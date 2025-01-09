@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Finance Tracker
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_CONTAINER_NAME}:${DB_PORT}/${DB_NAME}
+    password: ${DB_PASSWORD}
+    username: ${DB_USER}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: false
+  threads:
+    virtual:
+      enabled: true
+
+springdoc:
+  api-docs:
+    enabled: true
+
+telegram:
+  webhookUrl: none
+  token: 7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY
+  name: Finance Tracker
+  username: Finance_TrackBot
