@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.config;
+package com.abbos.financetrackerbot.core.config;
 
 import com.abbos.financetrackerbot.handler.UpdateHandler;
 import org.springframework.stereotype.Component;

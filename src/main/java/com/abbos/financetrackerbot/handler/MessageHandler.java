@@ -1,6 +1,6 @@
 package com.abbos.financetrackerbot.handler;
 
-import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.domain.entity.User;
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;
 import com.abbos.financetrackerbot.processor.message.AuthenticationMProcessor;
@@ -101,7 +101,7 @@ public class MessageHandler implements Handler {
     }
 
     private SendMessage unsupported(Long chatID, Language language) {
-        com.abbos.financetrackerbot.entity.User user = getUserByChatId(chatID);
+        User user = getUserByChatId(chatID);
         Role role = user.getRole();
         final var state = role.equals(Role.USER) ? USER_ON_BASE_MENU : AdminBaseMenuState.ADMIN_ON_BASE_MENU;
         updateUserState(user, state);
@@ -110,12 +110,12 @@ public class MessageHandler implements Handler {
                 : sendMessageFactory.sendMessageAdminMenu(String.valueOf(chatID), language);
     }
 
-    private void updateUserState(com.abbos.financetrackerbot.entity.User user, String state) {
+    private void updateUserState(User user, String state) {
         user.setState(state);
         userService.update(user);
     }
 
-    private com.abbos.financetrackerbot.entity.User getUserByChatId(Long chatId) {
+    private User getUserByChatId(Long chatId) {
         return userService.findByChatId(chatId)
                 .orElseThrow(() -> new IllegalStateException("User not found for chat ID: " + chatId));
     }

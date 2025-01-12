@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.config;
+package com.abbos.financetrackerbot.core.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

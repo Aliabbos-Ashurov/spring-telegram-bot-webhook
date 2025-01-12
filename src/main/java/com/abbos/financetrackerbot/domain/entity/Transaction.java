@@ -1,5 +1,7 @@
-package com.abbos.financetrackerbot.entity;
+package com.abbos.financetrackerbot.domain.entity;
 
+import com.abbos.financetrackerbot.enums.ExpenseCategories;
+import com.abbos.financetrackerbot.enums.IncomeSource;
 import com.abbos.financetrackerbot.enums.transaction.CurrencyType;
 import com.abbos.financetrackerbot.enums.transaction.MoneyType;
 import com.abbos.financetrackerbot.enums.transaction.TransactionStatus;
@@ -53,6 +55,14 @@ public class Transaction extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "money_type", nullable = false, updatable = false)
     private MoneyType moneyType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "expense_category", nullable = true)
+    private ExpenseCategories expenseCategory;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "income_source", nullable = true)
+    private IncomeSource incomeSource;
 
     @Builder.Default
     @Enumerated(EnumType.STRING)

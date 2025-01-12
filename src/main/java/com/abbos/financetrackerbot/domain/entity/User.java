@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.entity;
+package com.abbos.financetrackerbot.domain.entity;
 
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;

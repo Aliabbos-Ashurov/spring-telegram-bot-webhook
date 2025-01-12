@@ -1,7 +1,7 @@
 package com.abbos.financetrackerbot.processor.message.user;
 
-import com.abbos.financetrackerbot.dto.UserResponseDTO;
-import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.domain.dto.UserResponseDTO;
+import com.abbos.financetrackerbot.domain.entity.User;
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;
 import com.abbos.financetrackerbot.processor.Processor;

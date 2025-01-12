@@ -1,7 +1,7 @@
-package com.abbos.financetrackerbot.controller;
+package com.abbos.financetrackerbot.controller.bot;
 
-import com.abbos.financetrackerbot.config.FinTrackBot;
-import com.abbos.financetrackerbot.config.TelegramBotConfig;
+import com.abbos.financetrackerbot.core.config.FinTrackBot;
+import com.abbos.financetrackerbot.core.config.TelegramBotConfig;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

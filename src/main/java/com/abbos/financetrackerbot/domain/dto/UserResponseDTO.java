@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.dto;
+package com.abbos.financetrackerbot.domain.dto;
 
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;

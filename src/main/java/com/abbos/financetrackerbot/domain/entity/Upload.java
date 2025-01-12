@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.entity;
+package com.abbos.financetrackerbot.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

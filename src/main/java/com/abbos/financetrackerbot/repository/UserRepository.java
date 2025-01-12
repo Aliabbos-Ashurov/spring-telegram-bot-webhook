@@ -1,6 +1,6 @@
 package com.abbos.financetrackerbot.repository;
 
-import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

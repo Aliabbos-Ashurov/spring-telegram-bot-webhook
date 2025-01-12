@@ -1,6 +1,6 @@
 package com.abbos.financetrackerbot.processor;
 
-import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.domain.entity.User;
 import com.abbos.financetrackerbot.enums.Language;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

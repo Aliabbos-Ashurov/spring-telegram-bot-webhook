@@ -1,4 +1,4 @@
-package com.abbos.financetrackerbot.config;
+package com.abbos.financetrackerbot.core.config;
 
 import lombok.Getter;
 import lombok.Setter;

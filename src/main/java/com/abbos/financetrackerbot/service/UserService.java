@@ -1,6 +1,6 @@
 package com.abbos.financetrackerbot.service;
 
-import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.domain.entity.User;
 import com.abbos.financetrackerbot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
