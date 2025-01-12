@@ -1,10 +1,11 @@
 package com.abbos.financetrackerbot.service;
 
-import com.abbos.financetrackerbot.entity.TelegramUser;
-import com.abbos.financetrackerbot.repository.TelegramUserRepository;
+import com.abbos.financetrackerbot.entity.User;
+import com.abbos.financetrackerbot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -13,20 +14,24 @@ import java.util.Optional;
  **/
 @Service
 @RequiredArgsConstructor
-public class TelegramUserService {
+public class UserService {
 
-    private final TelegramUserRepository telegramUserRepository;
+    private final UserRepository telegramUserRepository;
 
 
-    public void save(TelegramUser telegramUser) {
+    public void save(User telegramUser) {
         telegramUserRepository.save(telegramUser);
     }
 
-    public TelegramUser update(TelegramUser telegramUser) {
+    public User update(User telegramUser) {
         return telegramUserRepository.save(telegramUser);
     }
 
-    public Optional<TelegramUser> findByChatId(Long chatId) {
+    public Optional<User> findByChatId(Long chatId) {
         return telegramUserRepository.findByChatId(chatId);
+    }
+
+    public List<User> findAll() {
+        return telegramUserRepository.findAllActive();
     }
 }

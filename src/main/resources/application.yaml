@@ -17,17 +17,22 @@ spring:
   threads:
     virtual:
       enabled: true
-
+  messages:
+    basename: messages
 
 springdoc:
   api-docs:
     enabled: true
 
 telegram:
-  webhookUrl: https://0a50-37-110-210-67.ngrok-free.app
+  url: https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY #https://1c00-37-110-210-1.ngrok-free.app
   token: 7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY
   name: Finance Tracker
   username: Finance_TrackBot
+
+  # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/
+  # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/deleteWebhook
+  # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/setWebhook?url=https://1c00-37-110-210-1.ngrok-free.app/api/update
 
 server:
   port: 80
