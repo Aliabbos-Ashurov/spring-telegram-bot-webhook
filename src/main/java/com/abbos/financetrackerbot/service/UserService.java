@@ -1,37 +1,22 @@
 package com.abbos.financetrackerbot.service;
 
+import com.abbos.financetrackerbot.domain.dto.Response;
+import com.abbos.financetrackerbot.domain.dto.user.UserCreateDTO;
+import com.abbos.financetrackerbot.domain.dto.user.UserResponseDTO;
+import com.abbos.financetrackerbot.domain.dto.user.UserUpdateDTO;
 import com.abbos.financetrackerbot.domain.entity.User;
-import com.abbos.financetrackerbot.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
-import java.util.Optional;
+public interface UserService
+        extends GenericTelegramService, GenericCrudService<Long, User, UserResponseDTO, UserCreateDTO, UserUpdateDTO> {
 
-/**
- * @author Aliabbos Ashurov
- * @since 09/January/2025  15:16
- **/
-@Service
-@RequiredArgsConstructor
-public class UserService {
+    User findByUsername(@NotNull String username);
 
-    private final UserRepository telegramUserRepository;
+    User save(@NotNull User user);
 
+    User findById(@NotNull Long id);
 
-    public void save(User telegramUser) {
-        telegramUserRepository.save(telegramUser);
-    }
+    void updateUser(User user);
 
-    public User update(User telegramUser) {
-        return telegramUserRepository.save(telegramUser);
-    }
-
-    public Optional<User> findByChatId(Long chatId) {
-        return telegramUserRepository.findByChatId(chatId);
-    }
-
-    public List<User> findAll() {
-        return telegramUserRepository.findAllActive();
-    }
+    Response<UserResponseDTO> findMe();
 }

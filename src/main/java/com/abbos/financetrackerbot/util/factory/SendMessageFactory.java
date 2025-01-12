@@ -1,7 +1,7 @@
 package com.abbos.financetrackerbot.util.factory;
 
-import com.abbos.financetrackerbot.domain.dto.UserResponseDTO;
-import com.abbos.financetrackerbot.domain.entity.User;
+import com.abbos.financetrackerbot.domain.dto.TgUserResponseDTO;
+import com.abbos.financetrackerbot.domain.dto.user.UserResponseDTO;
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;
 import com.abbos.financetrackerbot.service.UserService;
@@ -115,7 +115,7 @@ public class SendMessageFactory implements Util {
     }
 
     public SendMessage sendMessageProfileInfo(String chatID, Language language,
-                                              UserResponseDTO data) {
+                                              TgUserResponseDTO data) {
         return createMessageRKeyboard(chatID, buildUserData(language, data), replyKeyboardMarkupFactory.createBackButton(language));
     }
 
@@ -129,7 +129,7 @@ public class SendMessageFactory implements Util {
         return createMessageRKeyboard(chatID, message, replyKeyboardMarkupFactory.createAdminBaseMenuButtons(language));
     }
 
-    public String buildUserData(Language language, UserResponseDTO data) {
+    public String buildUserData(Language language, TgUserResponseDTO data) {
         final var name = messageSourceUtils.getLocalizedMessage("user.info.name", language);
         final var role = messageSourceUtils.getLocalizedMessage("user.info.role", language);
         final var lang = messageSourceUtils.getLocalizedMessage("user.info.language", language);
@@ -139,10 +139,10 @@ public class SendMessageFactory implements Util {
     }
 
     public String buildCustomersInfo(Language language) {
-        List<User> users = userService.findAll();
+        List<UserResponseDTO> users = userService.findAll().getData();
         StringBuilder stringBuilder = new StringBuilder();
         users.forEach(user -> stringBuilder.append(
-                buildUserData(language, new UserResponseDTO(user.getFullname(), user.getRole(), user.getLanguage()))
+                buildUserData(language, new TgUserResponseDTO(user.fullname(), user.role(), user.language()))
         ).append("\n"));
         return stringBuilder.toString();
     }

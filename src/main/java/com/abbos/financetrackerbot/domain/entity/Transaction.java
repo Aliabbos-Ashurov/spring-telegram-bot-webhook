@@ -57,11 +57,11 @@ public class Transaction extends BaseEntity {
     private MoneyType moneyType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "expense_category", nullable = true)
+    @Column(name = "expense_category")
     private ExpenseCategories expenseCategory;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "income_source", nullable = true)
+    @Column(name = "income_source")
     private IncomeSource incomeSource;
 
     @Builder.Default

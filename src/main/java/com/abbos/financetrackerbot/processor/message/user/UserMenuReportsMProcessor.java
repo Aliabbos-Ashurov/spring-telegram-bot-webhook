@@ -79,7 +79,7 @@ public class UserMenuReportsMProcessor implements TelegramBotHandler, Processor 
     @Override
     public void updateUserState(User user, String state) {
         user.setState(state);
-        userService.update(user);
+        userService.updateUser(user);
     }
 
     @Override

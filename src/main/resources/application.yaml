@@ -3,9 +3,9 @@ spring:
     name: Finance Tracker
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_CONTAINER_NAME}:${DB_PORT}/${DB_NAME}
-    password: ${DB_PASSWORD}
-    username: ${DB_USER}
+    url: jdbc:postgresql://localhost:5432/finance-tracker-db
+    password: password
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +13,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+
     open-in-view: false
   threads:
     virtual:
@@ -25,16 +26,35 @@ springdoc:
     enabled: true
 
 telegram:
-  url: https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY #https://1c00-37-110-210-1.ngrok-free.app
+  url: https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY #https://a90f-37-110-210-1.ngrok-free.app
   token: 7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY
   name: Finance Tracker
   username: Finance_TrackBot
 
   # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/
   # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/deleteWebhook
-  # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/setWebhook?url=https://1c00-37-110-210-1.ngrok-free.app/api/update
+  # https://api.telegram.org/bot7548438454:AAF4QQE9IQedG1F0PfWhaYT40z_iB76-2nY/setWebhook?url=https://a90f-37-110-210-1.ngrok-free.app/api/update
+
+token:
+  expiration:
+    access: 86400000    # 24 hours
+    refresh: 604800000  # 7 days
+  secret-key: vpwGiG8Hh659YkRNBnBZXW1a6pRWSfLBKyd4f4MigA8
+
+cors:
+  allowedHeaders: [ "*" ]
+  allowedOrigins: [ "*" ]
+  allowedMethods: [ "*" ]
+  allowCredentials: true
+  urlPattern: "/**"
 
 server:
-  port: 80
+  port: 8080
+
+project:
+  log:
+    mode: true
+  host: localhost
+
 
 

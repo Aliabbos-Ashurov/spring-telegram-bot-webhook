@@ -9,7 +9,7 @@ import lombok.NonNull;
  * @author Aliabbos Ashurov
  * @since 11/January/2025  18:52
  **/
-public record UserResponseDTO(
+public record TgUserResponseDTO(
         @NonNull @NotBlank String fullname,
         @NonNull @NotBlank Role role,
         @NonNull @NotBlank Language language

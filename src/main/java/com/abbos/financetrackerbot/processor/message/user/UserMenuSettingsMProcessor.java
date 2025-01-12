@@ -1,6 +1,6 @@
 package com.abbos.financetrackerbot.processor.message.user;
 
-import com.abbos.financetrackerbot.domain.dto.UserResponseDTO;
+import com.abbos.financetrackerbot.domain.dto.TgUserResponseDTO;
 import com.abbos.financetrackerbot.domain.entity.User;
 import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;
@@ -69,7 +69,7 @@ public class UserMenuSettingsMProcessor implements TelegramBotHandler, Processor
     private BotApiMethod<?> handleProfileEdit(User user, Long chatId, Language language) {
         updateUserState(user, USER_MENU_SETTINGS_CHANGE_PROFILE_INFORMATION);
         return sendMessageFactory.sendMessageProfileInfo(String.valueOf(chatId), language,
-                new UserResponseDTO(user.getFullname(), user.getRole(), user.getLanguage()));
+                new TgUserResponseDTO(user.getFullname(), user.getRole(), user.getLanguage()));
     }
 
     private BotApiMethod<?> handleAccessRights(User user, Long chatId, Language language) {
@@ -100,7 +100,7 @@ public class UserMenuSettingsMProcessor implements TelegramBotHandler, Processor
     private BotApiMethod<?> updatePassword(String newPassword, User user, Long chatId, Language language) {
         updateUserState(user, AuthenticationState.REQUEST_PASSWORD);
         user.setPassword(newPassword);
-        userService.update(user);
+        userService.updateUser(user);
         return sendMessageFactory.sendMessageRequestPassAftNew(String.valueOf(chatId), language);
     }
 
@@ -108,7 +108,7 @@ public class UserMenuSettingsMProcessor implements TelegramBotHandler, Processor
         updateUserState(user, USER_BASE_MENU_STATE_SETTINGS);
         Language newLanguage = determineLanguage(text, language);
         user.setLanguage(newLanguage);
-        userService.update(user);
+        userService.updateUser(user);
         return sendMessageFactory.sendMessageLangSuccess(String.valueOf(chatId), newLanguage);
     }
 
@@ -134,7 +134,7 @@ public class UserMenuSettingsMProcessor implements TelegramBotHandler, Processor
     @Override
     public void updateUserState(User user, String state) {
         user.setState(state);
-        userService.update(user);
+        userService.updateUser(user);
     }
 
     @Override

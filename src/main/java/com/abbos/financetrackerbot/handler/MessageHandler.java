@@ -112,7 +112,7 @@ public class MessageHandler implements Handler {
 
     private void updateUserState(User user, String state) {
         user.setState(state);
-        userService.update(user);
+        userService.updateUser(user);
     }
 
     private User getUserByChatId(Long chatId) {

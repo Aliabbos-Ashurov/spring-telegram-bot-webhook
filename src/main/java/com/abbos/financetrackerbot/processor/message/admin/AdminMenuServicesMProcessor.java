@@ -134,7 +134,7 @@ public class AdminMenuServicesMProcessor implements TelegramBotHandler, Processo
     @Override
     public void updateUserState(User user, String state) {
         user.setState(state);
-        userService.update(user);
+        userService.updateUser(user);
     }
 
     @Override

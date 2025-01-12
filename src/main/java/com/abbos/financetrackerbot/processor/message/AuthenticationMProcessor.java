@@ -6,15 +6,15 @@ import com.abbos.financetrackerbot.enums.Language;
 import com.abbos.financetrackerbot.enums.Role;
 import com.abbos.financetrackerbot.processor.Processor;
 import com.abbos.financetrackerbot.service.UserService;
-import com.abbos.financetrackerbot.state.AdminBaseMenuState;
-import com.abbos.financetrackerbot.state.UserBaseMenuState;
 import com.abbos.financetrackerbot.util.factory.SendMessageFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import static com.abbos.financetrackerbot.state.AdminBaseMenuState.ADMIN_ON_BASE_MENU;
 import static com.abbos.financetrackerbot.state.UserBaseMenuState.USER_ON_BASE_MENU;
 
 /**
@@ -27,6 +27,7 @@ public class AuthenticationMProcessor implements Processor {
 
     private final UserService userService;
     private final SendMessageFactory sendMessageFactory;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public BotApiMethod<?> process(Update update, String state) {
@@ -46,13 +47,11 @@ public class AuthenticationMProcessor implements Processor {
         final var role = user.getRole();
         return switch (role) {
             case USER -> {
-                user.setState(UserBaseMenuState.USER_ON_BASE_MENU);
-                userService.update(user);
+                updateUserState(user, USER_ON_BASE_MENU);
                 yield sendMessageFactory.sendMessageUserMenu(chatId.toString(), language);
             }
             case ADMIN -> {
-                user.setState(AdminBaseMenuState.ADMIN_ON_BASE_MENU);
-                userService.update(user);
+                updateUserState(user, ADMIN_ON_BASE_MENU);
                 yield sendMessageFactory.sendMessageAdminMenu(chatId.toString(), language);
             }
             default -> unsupported(chatId, language);
@@ -60,13 +59,13 @@ public class AuthenticationMProcessor implements Processor {
     }
 
     private boolean isValidPassword(String password, User user) {
-        return password.equals(user.getPassword());
+        return passwordEncoder.matches(password, user.getPassword());
     }
 
     private SendMessage unsupported(Long chatID, Language language) {
         User user = getUserByChatId(chatID);
         Role role = user.getRole();
-        final var state = role.equals(Role.USER) ? USER_ON_BASE_MENU : AdminBaseMenuState.ADMIN_ON_BASE_MENU;
+        final var state = role.equals(Role.USER) ? USER_ON_BASE_MENU : ADMIN_ON_BASE_MENU;
         updateUserState(user, state);
         return role.equals(Role.USER)
                 ? sendMessageFactory.sendMessageUserMenu(String.valueOf(chatID), language)
@@ -75,7 +74,7 @@ public class AuthenticationMProcessor implements Processor {
 
     private void updateUserState(User user, String state) {
         user.setState(state);
-        userService.update(user);
+        userService.updateUser(user);
     }
 
     private User getUserByChatId(Long chatId) {

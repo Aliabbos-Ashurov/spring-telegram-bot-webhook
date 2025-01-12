@@ -58,7 +58,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Role role = Role.USER;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private Long chatId;
 
     @Builder.Default
