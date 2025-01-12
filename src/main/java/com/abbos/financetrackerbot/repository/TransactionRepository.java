@@ -20,11 +20,11 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("""
                 SELECT t
                 FROM Transaction t
-                WHERE 
+                WHERE
                     (:userId IS NULL OR t.user.id = :userId)
                     AND (:transactionType IS NULL OR t.transactionType = :transactionType)
                     AND (:currencyType IS NULL OR t.currencyType = :currencyType)
-                ORDER BY 
+                ORDER BY
                     CASE WHEN :sortASC = true THEN t.confirmedAt END ASC,
                     CASE WHEN :sortASC = false THEN t.confirmedAt END DESC
             """)

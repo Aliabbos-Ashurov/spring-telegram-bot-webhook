@@ -12,5 +12,5 @@ public enum IncomeSource {
     INVESTMENTS,
     FREELANCING,
     RENTAL_INCOME,
-    OTHER;
+    OTHER
 }
