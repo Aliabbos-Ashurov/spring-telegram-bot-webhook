@@ -14,7 +14,7 @@ import java.io.Serializable;
 public interface GenericCrudService<
         ID extends Serializable,
         E extends BaseEntity,
-        R extends DTO,
+        R extends Response,
         CD extends DTO,
         UD extends DTO
         > extends GenericService, GenericQueryService<ID, E, R> {
