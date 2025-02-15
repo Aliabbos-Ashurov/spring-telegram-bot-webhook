@@ -1,8 +1,6 @@
 # Finance Tracker
 
-Finance Tracker is a Telegram bot designed to help users track their monthly income and expenses. The bot integrates
-with a Notion database to synchronize transaction data and generate reports, allowing users to keep track of their
-finances easily.
+Finance Tracker is a Telegram bot designed to help users track their monthly income and expenses. 
 
 ## Features
 
